@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FilmsApp">
+        <activity android:name=".AboutActivity"></activity>
         <activity
             android:name=".ItemListActivity"
             android:label="@string/app_name"

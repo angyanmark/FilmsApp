@@ -77,8 +77,11 @@ public class ItemListActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
-            Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "About clicked", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Context context = getWindow().getDecorView().findViewById(android.R.id.content).getContext();
+            Intent intent = new Intent(context, AboutActivity.class);
+
+            context.startActivity(intent);
+
             return true;
         }
 
