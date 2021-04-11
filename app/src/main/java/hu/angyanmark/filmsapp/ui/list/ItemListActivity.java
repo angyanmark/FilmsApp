@@ -1,4 +1,4 @@
-package hu.angyanmark.filmsapp;
+package hu.angyanmark.filmsapp.ui.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import hu.angyanmark.filmsapp.dummy.DummyContent;
+import hu.angyanmark.filmsapp.R;
+import hu.angyanmark.filmsapp.model.Movie;
+import hu.angyanmark.filmsapp.ui.about.AboutActivity;
+import hu.angyanmark.filmsapp.ui.details.ItemDetailActivity;
+import hu.angyanmark.filmsapp.ui.details.ItemDetailFragment;
 
 import java.util.List;
 
@@ -89,19 +90,19 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Movie.ITEMS, mTwoPane));
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final ItemListActivity mParentActivity;
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<Movie.MovieItem> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
+                Movie.MovieItem item = (Movie.MovieItem) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
@@ -121,7 +122,7 @@ public class ItemListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(ItemListActivity parent,
-                                      List<DummyContent.DummyItem> items,
+                                      List<Movie.MovieItem> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;

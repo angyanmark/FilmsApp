@@ -1,19 +1,17 @@
-package hu.angyanmark.filmsapp;
+package hu.angyanmark.filmsapp.ui.details;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 
 import android.view.MenuItem;
+
+import hu.angyanmark.filmsapp.ui.list.ItemListActivity;
+import hu.angyanmark.filmsapp.R;
 
 /**
  * An activity representing a single Item detail screen. This
