@@ -1,4 +1,4 @@
-package hu.angyanmark.filmsapp;
+package hu.angyanmark.filmsapp.ui.details;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import hu.angyanmark.filmsapp.dummy.DummyContent;
+import hu.angyanmark.filmsapp.ui.list.ItemListActivity;
+import hu.angyanmark.filmsapp.R;
+import hu.angyanmark.filmsapp.model.Movie;
 
 /**
  * A fragment representing a single Item detail screen.
@@ -30,7 +32,7 @@ public class ItemDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private DummyContent.DummyItem mItem;
+    private Movie.MovieItem mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -47,7 +49,7 @@ public class ItemDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = Movie.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);

@@ -3,14 +3,16 @@
     package="hu.angyanmark.filmsapp">
 
     <application
+        android:name="hu.angyanmark.filmsapp.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FilmsApp">
+        <activity android:name=".ui.about.AboutActivity"></activity>
         <activity
-            android:name=".ItemListActivity"
+            android:name=".ui.list.ItemListActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.FilmsApp.NoActionBar">
             <intent-filter>
@@ -20,13 +22,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ItemDetailActivity"
+            android:name=".ui.details.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ItemListActivity"
+            android:parentActivityName=".ui.list.ItemListActivity"
             android:theme="@style/Theme.FilmsApp.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="hu.angyanmark.filmsapp.ItemListActivity" />
+                android:value="hu.angyanmark.filmsapp.ui.list.ItemListActivity" />
         </activity>
     </application>
 
