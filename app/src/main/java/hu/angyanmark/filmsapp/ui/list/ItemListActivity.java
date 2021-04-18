@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import hu.angyanmark.filmsapp.R;
-import hu.angyanmark.filmsapp.model.Movie;
+import hu.angyanmark.filmsapp.model.Dummy;
 import hu.angyanmark.filmsapp.ui.about.AboutActivity;
 import hu.angyanmark.filmsapp.ui.details.ItemDetailActivity;
 import hu.angyanmark.filmsapp.ui.details.ItemDetailFragment;
@@ -90,19 +90,19 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Movie.ITEMS, mTwoPane));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Dummy.ITEMS, mTwoPane));
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final ItemListActivity mParentActivity;
-        private final List<Movie.MovieItem> mValues;
+        private final List<Dummy.DummyItem> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Movie.MovieItem item = (Movie.MovieItem) view.getTag();
+                Dummy.DummyItem item = (Dummy.DummyItem) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
@@ -122,7 +122,7 @@ public class ItemListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(ItemListActivity parent,
-                                      List<Movie.MovieItem> items,
+                                      List<Dummy.DummyItem> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
