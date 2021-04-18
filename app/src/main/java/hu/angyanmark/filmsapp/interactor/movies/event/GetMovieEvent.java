@@ -1,16 +1,16 @@
 package hu.angyanmark.filmsapp.interactor.movies.event;
 
-import hu.angyanmark.filmsapp.model.Movie;
+import hu.angyanmark.filmsapp.model.MovieDetails;
 
 public class GetMovieEvent {
     private int code;
-    private Movie movie;
+    private MovieDetails movie;
     private Throwable throwable;
 
     public GetMovieEvent() {
     }
 
-    public GetMovieEvent(int code, Movie movie, Throwable throwable) {
+    public GetMovieEvent(int code, MovieDetails movie, Throwable throwable) {
         this.code = code;
         this.movie = movie;
         this.throwable = throwable;
@@ -24,11 +24,11 @@ public class GetMovieEvent {
         this.code = code;
     }
 
-    public Movie getMovie() {
+    public MovieDetails getMovie() {
         return movie;
     }
 
-    public void setMovie(Movie movie) {
+    public void setMovie(MovieDetails movie) {
         this.movie = movie;
     }
 

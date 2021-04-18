@@ -1,0 +1,260 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Films
+host: api.themoviedb.org
+basePath: /3
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Movie
+paths:
+  '/movie/popular':
+    get:
+      tags:
+        - Movie
+      operationId: getMovies
+      parameters:
+        - name: api_key
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+              $ref: '#/definitions/PopularMoviesResponse'
+  '/movie/{movie_id}':
+    get:
+      tags:
+        - Movie
+      operationId: getMovie
+      parameters:
+        - name: movie_id
+          in: path
+          required: true
+          type: integer
+        - name: api_key
+          in: query
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/MovieDetails'
+  '/movie/{movie_id}/delete':
+    delete:
+      tags:
+        - Movie
+      operationId: deleteMovie
+      parameters:
+        - name: movie_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+  '/movies/{movie_id}/put':
+    put:
+      tags:
+        - Movie
+      operationId: putMovie
+      parameters:
+        - name: movie_id
+          in: path
+          required: true
+          type: integer
+        - name: data
+          in: body
+          required: false
+          schema:
+            "$ref": "#/definitions/MovieDetails"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/MovieDetails"
+  "/movies/{movie_id}/post":
+    post:
+      tags:
+        - Movie
+      operationId: postMovie
+      parameters:
+        - name: movie_id
+          in: path
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/MovieDetails"
+            
+definitions:
+  PopularMoviesResponse:
+    type: object
+    properties:
+      page:
+        type: integer
+      results:
+        type: array
+        items:
+          $ref: '#/definitions/PopularMovie'
+      total_results:
+        type: integer
+      total_pages:
+        type: integer
+        
+  PopularMovie:
+    type: object
+    properties:
+      poster_path:
+        type: string
+      adult:
+        type: boolean
+      overview:
+        type: string
+      release_date:
+        type: string
+      genre_ids:
+        type: array
+        items:
+          type: integer
+      id:
+        type: integer
+      original_title:
+        type: string
+      original_language:
+        type: string
+      title:
+        type: string
+      backdrop_path:
+        type: string
+      popularity:
+        type: number
+        format: double
+      vote_count:
+        type: integer
+      video:
+        type: boolean
+      vote_average:
+        type: number
+        format: double
+        
+  MovieDetails:
+    type: object
+    properties:
+      adult:
+        type: boolean
+      backdrop_path:
+        type: string
+      belongs_to_collection:
+        type: object
+        items:
+          $ref: '#/definitions/BelongsToCollection'
+      budget:
+        type: integer
+      genres:
+        type: array
+        items:
+          $ref: '#/definitions/Genre'
+      homepage:
+        type: string
+      id:
+        type: integer
+      imdb_id:
+        type: string
+      original_language:
+        type: string
+      original_title:
+        type: string
+      overview:
+        type: string
+      popularity:
+        type: number
+        format: double
+      poster_path:
+        type: string
+      production_companies:
+        type: array
+        items:
+          $ref: '#/definitions/ProductionCompany'
+      production_countries:
+        type: array
+        items:
+          $ref: '#/definitions/ProductionCountry'
+      release_date:
+        type: string
+      revenue:
+        type: integer
+      runtime:
+        type: integer
+      spoken_languages:
+        type: array
+        items:
+          $ref: '#/definitions/SpokenLanguage'
+      status:
+        type: string
+      tagline:
+        type: string
+      title:
+        type: string
+      video:
+        type: boolean
+      vote_average:
+        type: number
+        format: double
+      vote_count:
+        type: integer
+      
+  Genre:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+        
+  ProductionCompany:
+    type: object
+    properties:
+      name:
+        type: string
+      id:
+        type: integer
+      logo_path:
+        type: string
+      origin_country:
+        type: string
+        
+  ProductionCountry:
+    type: object
+    properties:
+      iso_3166_1:
+        type: string
+      name:
+        type: string
+        
+  SpokenLanguage:
+    type: object
+    properties:
+      iso_639_1:
+        type: string
+      name:
+        type: string
+        
+  BelongsToCollection:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      poster_path:
+        type: string
+      backdrop_path:
+        type: string

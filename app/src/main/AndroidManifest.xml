@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hu.angyanmark.filmsapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="hu.angyanmark.filmsapp.App"
         android:allowBackup="true"

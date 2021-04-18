@@ -11,17 +11,17 @@ import java.util.Map;
  * <p>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class Movie {
+public class Dummy {
 
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<MovieItem> ITEMS = new ArrayList<MovieItem>();
+    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<String, MovieItem> ITEM_MAP = new HashMap<String, MovieItem>();
+    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
 
     private static final int COUNT = 25;
 
@@ -32,13 +32,13 @@ public class Movie {
         }
     }
 
-    private static void addItem(MovieItem item) {
+    private static void addItem(DummyItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    private static MovieItem createDummyItem(int position) {
-        return new MovieItem(String.valueOf(position), "Item " + position, makeDetails(position), String.valueOf(position));
+    private static DummyItem createDummyItem(int position) {
+        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position), String.valueOf(position));
     }
 
     private static String makeDetails(int position) {
@@ -53,13 +53,13 @@ public class Movie {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class MovieItem {
+    public static class DummyItem {
         public final String id;
         public final String content;
         public final String details;
         public final String rating;
 
-        public MovieItem(String id, String content, String details, String rating) {
+        public DummyItem(String id, String content, String details, String rating) {
             this.id = id;
             this.content = content;
             this.details = details;

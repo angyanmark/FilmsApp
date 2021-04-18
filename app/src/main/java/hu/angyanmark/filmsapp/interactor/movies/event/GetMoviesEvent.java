@@ -2,17 +2,17 @@ package hu.angyanmark.filmsapp.interactor.movies.event;
 
 import java.util.List;
 
-import hu.angyanmark.filmsapp.model.Movie;
+import hu.angyanmark.filmsapp.model.PopularMovie;
 
 public class GetMoviesEvent {
     private int code;
-    private List<Movie> movies;
+    private List<PopularMovie> movies;
     private Throwable throwable;
 
     public GetMoviesEvent() {
     }
 
-    public GetMoviesEvent(int code, List<Movie> movies, Throwable throwable) {
+    public GetMoviesEvent(int code, List<PopularMovie> movies, Throwable throwable) {
         this.code = code;
         this.movies = movies;
         this.throwable = throwable;
@@ -26,11 +26,11 @@ public class GetMoviesEvent {
         this.code = code;
     }
 
-    public List<Movie> getMovies() {
+    public List<PopularMovie> getMovies() {
         return movies;
     }
 
-    public void setMovies(List<Movie> movies) {
+    public void setMovies(List<PopularMovie> movies) {
         this.movies = movies;
     }
 

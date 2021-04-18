@@ -17,28 +17,22 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import hu.angyanmark.filmsapp.R;
-import hu.angyanmark.filmsapp.model.Movie;
+import hu.angyanmark.filmsapp.model.Dummy;
+import hu.angyanmark.filmsapp.model.PopularMovie;
 import hu.angyanmark.filmsapp.ui.about.AboutActivity;
 import hu.angyanmark.filmsapp.ui.details.ItemDetailActivity;
 import hu.angyanmark.filmsapp.ui.details.ItemDetailFragment;
 
 import java.util.List;
 
-/**
- * An activity representing a list of Items. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link ItemDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
-public class ItemListActivity extends AppCompatActivity {
+import javax.inject.Inject;
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
+public class ItemListActivity extends AppCompatActivity implements ItemListScreen {
+
     private boolean mTwoPane;
+
+    @Inject
+    ItemListPresenter itemListPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +44,26 @@ public class ItemListActivity extends AppCompatActivity {
         toolbar.setTitle(getTitle());
 
         if (findViewById(R.id.item_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
             mTwoPane = true;
         }
 
         View recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        //itemListPresenter.attachScreen(this);
+
+        //itemListPresenter.showMovies();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //itemListPresenter.detachScreen();
     }
 
     @Override
@@ -90,19 +94,30 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Movie.ITEMS, mTwoPane));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Dummy.ITEMS, mTwoPane));
+    }
+
+    @Override
+    public void showMovies(List<PopularMovie> movies) {
+        Intent intent = new Intent(ItemListActivity.this, ItemDetailActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showNetworkError(String message) {
+
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final ItemListActivity mParentActivity;
-        private final List<Movie.MovieItem> mValues;
+        private final List<Dummy.DummyItem> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Movie.MovieItem item = (Movie.MovieItem) view.getTag();
+                Dummy.DummyItem item = (Dummy.DummyItem) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
                     arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
@@ -122,7 +137,7 @@ public class ItemListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(ItemListActivity parent,
-                                      List<Movie.MovieItem> items,
+                                      List<Dummy.DummyItem> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
