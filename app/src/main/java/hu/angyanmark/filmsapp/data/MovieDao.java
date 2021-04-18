@@ -25,4 +25,3 @@ public interface MovieDao {
     @Delete
     void delete(Movie movie);
 }
-

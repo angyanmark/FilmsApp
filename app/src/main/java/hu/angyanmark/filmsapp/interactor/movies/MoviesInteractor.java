@@ -10,6 +10,7 @@ import hu.angyanmark.filmsapp.interactor.movies.event.GetMoviesEvent;
 import hu.angyanmark.filmsapp.model.MovieDetails;
 import hu.angyanmark.filmsapp.model.PopularMoviesResponse;
 import hu.angyanmark.filmsapp.network.MoviesApi;
+import hu.angyanmark.filmsapp.network.NetworkConfig;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -25,7 +26,7 @@ public class MoviesInteractor {
     public void getMovies() {
         GetMoviesEvent event = new GetMoviesEvent();
         try {
-            Call<PopularMoviesResponse> moviesQueryCall = moviesApi.getMovies("API_KEY");
+            Call<PopularMoviesResponse> moviesQueryCall = moviesApi.getMovies(NetworkConfig.API_KEY);
 
             Response<PopularMoviesResponse> response = moviesQueryCall.execute();
             if (response.code() != 200) {
@@ -43,7 +44,7 @@ public class MoviesInteractor {
     public void getMovie(int id) {
         GetMovieEvent event = new GetMovieEvent();
         try {
-            Call<MovieDetails> moviesQueryCall = moviesApi.getMovie(id, "API_KEY");
+            Call<MovieDetails> moviesQueryCall = moviesApi.getMovie(id, NetworkConfig.API_KEY);
 
             Response<MovieDetails> response = moviesQueryCall.execute();
             if (response.code() != 200) {

@@ -1,16 +1,22 @@
 package hu.angyanmark.filmsapp.ui.list;
 
-import java.util.List;
+import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
 
-import hu.angyanmark.filmsapp.model.Dummy;
+import hu.angyanmark.filmsapp.di.Network;
+import hu.angyanmark.filmsapp.interactor.movies.MoviesInteractor;
 import hu.angyanmark.filmsapp.ui.Presenter;
 
 public class ItemListPresenter extends Presenter<ItemListScreen> {
 
+    Executor networkExecutor;
+    MoviesInteractor moviesInteractor;
+
     @Inject
-    public ItemListPresenter() {
+    public ItemListPresenter(@Network Executor networkExecutor, MoviesInteractor moviesInteractor) {
+        this.networkExecutor = networkExecutor;
+        this.moviesInteractor = moviesInteractor;
     }
 
     @Override
@@ -23,8 +29,13 @@ public class ItemListPresenter extends Presenter<ItemListScreen> {
         super.detachScreen();
     }
 
-    public void showMovies(List<Dummy> movies) {
-        screen.showMovies(movies);
+    public void showMovies() {
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                moviesInteractor.getMovies();
+            }
+        });
     }
 }
 

@@ -1,13 +1,9 @@
 package hu.angyanmark.filmsapp.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Helper class for providing sample content for user interfaces created by
