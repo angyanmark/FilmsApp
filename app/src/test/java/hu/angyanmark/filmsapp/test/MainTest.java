@@ -11,7 +11,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import hu.angyanmark.filmsapp.model.Dummy;
+import hu.angyanmark.filmsapp.model.PopularMovie;
 import hu.angyanmark.filmsapp.ui.list.ItemListPresenter;
 import hu.angyanmark.filmsapp.ui.list.ItemListScreen;
 
@@ -35,8 +35,8 @@ public class MainTest {
 
     @Test
     public void testSearch() {
-        List<Dummy> movies = new ArrayList<Dummy>();
-        itemListPresenter.showMovies(movies);
+        List<PopularMovie> movies = new ArrayList<PopularMovie>();
+        itemListPresenter.showMovies();
         verify(itemListScreen).showMovies(movies);
     }
 

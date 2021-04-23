@@ -40,18 +40,18 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
     private MovieDetails movie;
 
     public ItemDetailFragment() {
-        //App.injector.inject(this);
+        App.injector.inject(this);
     }
 
     @Override
     public void onAttach(final Context context) {
         super.onAttach(context);
-        //itemDetailPresenter.attachScreen(this);
+        itemDetailPresenter.attachScreen(this);
     }
 
     @Override
     public void onDetach() {
-        //itemDetailPresenter.detachScreen();
+        itemDetailPresenter.detachScreen();
         super.onDetach();
     }
 

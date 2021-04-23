@@ -35,6 +35,15 @@ public class ItemDetailPresenter extends Presenter<ItemDetailScreen> {
         super.detachScreen();
     }
 
+    public void getMovie(final int id) {
+        networkExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                moviesInteractor.getMovie(id);
+            }
+        });
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(final GetMovieEvent event) {
         if (event.getThrowable() != null) {

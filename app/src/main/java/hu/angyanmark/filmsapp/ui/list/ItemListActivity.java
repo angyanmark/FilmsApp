@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import hu.angyanmark.filmsapp.App;
 import hu.angyanmark.filmsapp.R;
 import hu.angyanmark.filmsapp.model.Dummy;
 import hu.angyanmark.filmsapp.model.PopularMovie;
@@ -39,6 +40,8 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
+        App.injector.inject(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
@@ -55,15 +58,15 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
     @Override
     protected void onStart(){
         super.onStart();
-        //itemListPresenter.attachScreen(this);
+        itemListPresenter.attachScreen(this);
 
-        //itemListPresenter.showMovies();
+        itemListPresenter.showMovies();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        //itemListPresenter.detachScreen();
+        itemListPresenter.detachScreen();
     }
 
     @Override
