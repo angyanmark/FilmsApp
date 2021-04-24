@@ -2,39 +2,113 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/release_date"
-        style="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.details.ItemDetailFragment" />
+        android:orientation="horizontal">
+
+        <TextView
+            xmlns:tools="http://schemas.android.com/tools"
+            style="?android:attr/textAppearanceLarge"
+            android:text="Release date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:context=".ui.details.ItemDetailFragment" />
+
+        <TextView
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/release_date"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:context=".ui.details.ItemDetailFragment" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            xmlns:tools="http://schemas.android.com/tools"
+            style="?android:attr/textAppearanceLarge"
+            android:text="Runtime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:context=".ui.details.ItemDetailFragment" />
+
+        <TextView
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/runtime"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:context=".ui.details.ItemDetailFragment" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            xmlns:tools="http://schemas.android.com/tools"
+            style="?android:attr/textAppearanceLarge"
+            android:text="Budget"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:context=".ui.details.ItemDetailFragment" />
+
+        <TextView
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/budget"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:context=".ui.details.ItemDetailFragment" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            xmlns:tools="http://schemas.android.com/tools"
+            style="?android:attr/textAppearanceLarge"
+            android:text="Vote average"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:context=".ui.details.ItemDetailFragment" />
+
+        <TextView
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/details_vote_average"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:context=".ui.details.ItemDetailFragment" />
+    </LinearLayout>
 
     <TextView
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/runtime"
         style="?android:attr/textAppearanceLarge"
+        android:text="Overview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:context=".ui.details.ItemDetailFragment" />
-
-    <TextView
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/budget"
-        style="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:context=".ui.details.ItemDetailFragment" />
-
-    <TextView
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/details_vote_average"
-        style="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
         tools:context=".ui.details.ItemDetailFragment" />
 
     <TextView
@@ -43,6 +117,7 @@
         style="?android:attr/textAppearanceLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         tools:context=".ui.details.ItemDetailFragment" />
 
 </LinearLayout>
