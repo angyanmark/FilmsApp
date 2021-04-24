@@ -19,7 +19,6 @@ import javax.inject.Inject;
 import hu.angyanmark.filmsapp.App;
 import hu.angyanmark.filmsapp.model.MovieDetails;
 import hu.angyanmark.filmsapp.R;
-import hu.angyanmark.filmsapp.model.Dummy;
 
 public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
 
@@ -28,9 +27,7 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
     @Inject
     ItemDetailPresenter itemDetailPresenter;
 
-    private Dummy.DummyItem mItem;
-
-    private MovieDetails movie;
+    private MovieDetails mMovie;
 
     public ItemDetailFragment() {
         App.injector.inject(this);
@@ -53,35 +50,40 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            mItem = Dummy.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
-
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.content);
-            }
+            String id = getArguments().getString(ARG_ITEM_ID);
+            itemDetailPresenter.getMovie(Integer.parseInt(id));
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.item_detail, container, false);
-
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.details);
-        }
-
         return rootView;
     }
 
     @Override
     public void showMovie(MovieDetails movie) {
+        mMovie = movie;
 
+        if (mMovie != null) {
+            setDetailContent(movie);
+        }
     }
 
     @Override
     public void showNetworkError(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    private void setDetailContent(MovieDetails movie){
+        Activity activity = this.getActivity();
+        CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle(mMovie.getTitle());
+        }
+
+        if (mMovie != null) {
+            ((TextView) getView().findViewById(R.id.overview)).setText(mMovie.getOverview());
+        }
     }
 }
