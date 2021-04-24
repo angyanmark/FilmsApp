@@ -82,6 +82,10 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
             appBarLayout.setTitle(movie.getTitle());
         }
 
+        ((TextView) getView().findViewById(R.id.release_date)).setText(movie.getReleaseDate());
+        ((TextView) getView().findViewById(R.id.runtime)).setText(movie.getRuntime().toString());
+        ((TextView) getView().findViewById(R.id.budget)).setText(movie.getBudget().toString());
+        ((TextView) getView().findViewById(R.id.details_vote_average)).setText(movie.getVoteAverage().toString());
         ((TextView) getView().findViewById(R.id.overview)).setText(movie.getOverview());
     }
 }
