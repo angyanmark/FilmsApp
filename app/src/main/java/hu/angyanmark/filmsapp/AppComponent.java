@@ -3,7 +3,6 @@ package hu.angyanmark.filmsapp;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import hu.angyanmark.filmsapp.interactor.InteractorModule;
 import hu.angyanmark.filmsapp.interactor.movies.MoviesInteractor;
 import hu.angyanmark.filmsapp.network.NetworkModule;
 import hu.angyanmark.filmsapp.ui.UIModule;
@@ -13,7 +12,7 @@ import hu.angyanmark.filmsapp.ui.list.ItemListActivity;
 import hu.angyanmark.filmsapp.ui.list.ItemListPresenter;
 
 @Singleton
-@Component(modules = {UIModule.class, NetworkModule.class, InteractorModule.class})
+@Component(modules = {UIModule.class, NetworkModule.class})
 public interface AppComponent {
     void inject(ItemListActivity itemListActivity);
 

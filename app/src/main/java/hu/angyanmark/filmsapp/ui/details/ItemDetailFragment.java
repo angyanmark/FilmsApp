@@ -18,23 +18,16 @@ import javax.inject.Inject;
 
 import hu.angyanmark.filmsapp.App;
 import hu.angyanmark.filmsapp.model.MovieDetails;
-import hu.angyanmark.filmsapp.ui.list.ItemListActivity;
 import hu.angyanmark.filmsapp.R;
 import hu.angyanmark.filmsapp.model.Dummy;
 
 public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
+
     public static final String ARG_ITEM_ID = "item_id";
 
     @Inject
     ItemDetailPresenter itemDetailPresenter;
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
     private Dummy.DummyItem mItem;
 
     private MovieDetails movie;
@@ -60,9 +53,6 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
             mItem = Dummy.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
@@ -78,7 +68,6 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.item_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
         if (mItem != null) {
             ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.details);
         }

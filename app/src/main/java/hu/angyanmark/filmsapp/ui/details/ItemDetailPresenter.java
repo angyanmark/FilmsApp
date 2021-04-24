@@ -14,6 +14,7 @@ import hu.angyanmark.filmsapp.interactor.movies.event.GetMovieEvent;
 import hu.angyanmark.filmsapp.ui.Presenter;
 
 public class ItemDetailPresenter extends Presenter<ItemDetailScreen> {
+
     Executor networkExecutor;
     MoviesInteractor moviesInteractor;
 

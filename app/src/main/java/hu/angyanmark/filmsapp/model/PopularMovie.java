@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class PopularMovie   {
 
@@ -50,8 +49,6 @@ public class PopularMovie   {
     @SerializedName("vote_average")
     private Double voteAverage = null;
 
-    /**
-     **/
     public String getPosterPath() {
         return posterPath;
     }
@@ -59,8 +56,6 @@ public class PopularMovie   {
         this.posterPath = posterPath;
     }
 
-    /**
-     **/
     public Boolean getAdult() {
         return adult;
     }
@@ -68,8 +63,6 @@ public class PopularMovie   {
         this.adult = adult;
     }
 
-    /**
-     **/
     public String getOverview() {
         return overview;
     }
@@ -77,8 +70,6 @@ public class PopularMovie   {
         this.overview = overview;
     }
 
-    /**
-     **/
     public String getReleaseDate() {
         return releaseDate;
     }
@@ -86,8 +77,6 @@ public class PopularMovie   {
         this.releaseDate = releaseDate;
     }
 
-    /**
-     **/
     public List<Integer> getGenreIds() {
         return genreIds;
     }
@@ -95,8 +84,6 @@ public class PopularMovie   {
         this.genreIds = genreIds;
     }
 
-    /**
-     **/
     public Integer getId() {
         return id;
     }
@@ -104,8 +91,6 @@ public class PopularMovie   {
         this.id = id;
     }
 
-    /**
-     **/
     public String getOriginalTitle() {
         return originalTitle;
     }
@@ -113,8 +98,6 @@ public class PopularMovie   {
         this.originalTitle = originalTitle;
     }
 
-    /**
-     **/
     public String getOriginalLanguage() {
         return originalLanguage;
     }
@@ -122,8 +105,6 @@ public class PopularMovie   {
         this.originalLanguage = originalLanguage;
     }
 
-    /**
-     **/
     public String getTitle() {
         return title;
     }
@@ -131,8 +112,6 @@ public class PopularMovie   {
         this.title = title;
     }
 
-    /**
-     **/
     public String getBackdropPath() {
         return backdropPath;
     }
@@ -140,8 +119,6 @@ public class PopularMovie   {
         this.backdropPath = backdropPath;
     }
 
-    /**
-     **/
     public Double getPopularity() {
         return popularity;
     }
@@ -149,8 +126,6 @@ public class PopularMovie   {
         this.popularity = popularity;
     }
 
-    /**
-     **/
     public Integer getVoteCount() {
         return voteCount;
     }
@@ -158,8 +133,6 @@ public class PopularMovie   {
         this.voteCount = voteCount;
     }
 
-    /**
-     **/
     public Boolean getVideo() {
         return video;
     }
@@ -167,77 +140,11 @@ public class PopularMovie   {
         this.video = video;
     }
 
-    /**
-     **/
     public Double getVoteAverage() {
         return voteAverage;
     }
     public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PopularMovie popularMovie = (PopularMovie) o;
-        return Objects.equals(posterPath, popularMovie.posterPath) &&
-                Objects.equals(adult, popularMovie.adult) &&
-                Objects.equals(overview, popularMovie.overview) &&
-                Objects.equals(releaseDate, popularMovie.releaseDate) &&
-                Objects.equals(genreIds, popularMovie.genreIds) &&
-                Objects.equals(id, popularMovie.id) &&
-                Objects.equals(originalTitle, popularMovie.originalTitle) &&
-                Objects.equals(originalLanguage, popularMovie.originalLanguage) &&
-                Objects.equals(title, popularMovie.title) &&
-                Objects.equals(backdropPath, popularMovie.backdropPath) &&
-                Objects.equals(popularity, popularMovie.popularity) &&
-                Objects.equals(voteCount, popularMovie.voteCount) &&
-                Objects.equals(video, popularMovie.video) &&
-                Objects.equals(voteAverage, popularMovie.voteAverage);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(posterPath, adult, overview, releaseDate, genreIds, id, originalTitle, originalLanguage, title, backdropPath, popularity, voteCount, video, voteAverage);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class PopularMovie {\n");
-
-        sb.append("    posterPath: ").append(toIndentedString(posterPath)).append("\n");
-        sb.append("    adult: ").append(toIndentedString(adult)).append("\n");
-        sb.append("    overview: ").append(toIndentedString(overview)).append("\n");
-        sb.append("    releaseDate: ").append(toIndentedString(releaseDate)).append("\n");
-        sb.append("    genreIds: ").append(toIndentedString(genreIds)).append("\n");
-        sb.append("    id: ").append(toIndentedString(id)).append("\n");
-        sb.append("    originalTitle: ").append(toIndentedString(originalTitle)).append("\n");
-        sb.append("    originalLanguage: ").append(toIndentedString(originalLanguage)).append("\n");
-        sb.append("    title: ").append(toIndentedString(title)).append("\n");
-        sb.append("    backdropPath: ").append(toIndentedString(backdropPath)).append("\n");
-        sb.append("    popularity: ").append(toIndentedString(popularity)).append("\n");
-        sb.append("    voteCount: ").append(toIndentedString(voteCount)).append("\n");
-        sb.append("    video: ").append(toIndentedString(video)).append("\n");
-        sb.append("    voteAverage: ").append(toIndentedString(voteAverage)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
     }
 }
 
