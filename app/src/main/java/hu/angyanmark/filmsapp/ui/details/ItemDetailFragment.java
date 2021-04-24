@@ -79,11 +79,9 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
         Activity activity = this.getActivity();
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
         if (appBarLayout != null) {
-            appBarLayout.setTitle(mMovie.getTitle());
+            appBarLayout.setTitle(movie.getTitle());
         }
 
-        if (mMovie != null) {
-            ((TextView) getView().findViewById(R.id.overview)).setText(mMovie.getOverview());
-        }
+        ((TextView) getView().findViewById(R.id.overview)).setText(movie.getOverview());
     }
 }
