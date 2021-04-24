@@ -13,22 +13,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import hu.angyanmark.filmsapp.R;
-import hu.angyanmark.filmsapp.model.Dummy;
+import hu.angyanmark.filmsapp.model.PopularMovie;
 import hu.angyanmark.filmsapp.ui.details.ItemDetailActivity;
 import hu.angyanmark.filmsapp.ui.details.ItemDetailFragment;
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     private final ItemListActivity mParentActivity;
-    private final List<Dummy.DummyItem> mValues;
+    private final List<PopularMovie> mMovies;
     private final boolean mTwoPane;
     private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Dummy.DummyItem item = (Dummy.DummyItem) view.getTag();
+            PopularMovie item = (PopularMovie) view.getTag();
             if (mTwoPane) {
                 Bundle arguments = new Bundle();
-                arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
+                arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.getId().toString());
                 ItemDetailFragment fragment = new ItemDetailFragment();
                 fragment.setArguments(arguments);
                 mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -37,17 +37,15 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
             } else {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, ItemDetailActivity.class);
-                intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
+                intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.getId().toString());
 
                 context.startActivity(intent);
             }
         }
     };
 
-    ItemListAdapter(ItemListActivity parent,
-                                  List<Dummy.DummyItem> items,
-                                  boolean twoPane) {
-        mValues = items;
+    ItemListAdapter(ItemListActivity parent, List<PopularMovie> movies, boolean twoPane) {
+        mMovies = movies;
         mParentActivity = parent;
         mTwoPane = twoPane;
     }
@@ -61,29 +59,26 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
-        holder.mRatingView.setText(mValues.get(position).rating);
+        holder.mTitleReleaseDateView.setText(mMovies.get(position).getTitle() + " (" + mMovies.get(position).getReleaseDate() + ")");
+        holder.mVoteAverageView.setText(mMovies.get(position).getVoteAverage().toString());
 
-        holder.itemView.setTag(mValues.get(position));
+        holder.itemView.setTag(mMovies.get(position));
         holder.itemView.setOnClickListener(mOnClickListener);
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return mMovies.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        final TextView mIdView;
-        final TextView mContentView;
-        final TextView mRatingView;
+        final TextView mTitleReleaseDateView;
+        final TextView mVoteAverageView;
 
         ViewHolder(View view) {
             super(view);
-            mIdView = (TextView) view.findViewById(R.id.id_text);
-            mContentView = (TextView) view.findViewById(R.id.content);
-            mRatingView = (TextView) view.findViewById(R.id.rating);
+            mTitleReleaseDateView = (TextView) view.findViewById(R.id.title_release_date);
+            mVoteAverageView = (TextView) view.findViewById(R.id.vote_average);
         }
     }
 }

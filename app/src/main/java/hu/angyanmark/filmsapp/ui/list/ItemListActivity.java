@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import hu.angyanmark.filmsapp.App;
 import hu.angyanmark.filmsapp.R;
-import hu.angyanmark.filmsapp.model.Dummy;
 import hu.angyanmark.filmsapp.model.PopularMovie;
 import hu.angyanmark.filmsapp.ui.about.AboutActivity;
 
@@ -81,7 +80,7 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView, List<PopularMovie> movies) {
-        recyclerView.setAdapter(new ItemListAdapter(this, Dummy.ITEMS, mTwoPane));
+        recyclerView.setAdapter(new ItemListAdapter(this, movies, mTwoPane));
     }
 
     @Override
