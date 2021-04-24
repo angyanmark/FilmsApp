@@ -3,8 +3,10 @@ package hu.angyanmark.filmsapp.data;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
+import hu.angyanmark.filmsapp.model.PopularMovie;
+
 @Database(
-        entities = {Movie.class},
+        entities = {PopularMovie.class},
         version = 1,
         exportSchema = false
 )

@@ -1,51 +1,72 @@
 package hu.angyanmark.filmsapp.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity(tableName = "popularmovie")
 public class PopularMovie   {
 
+    @ColumnInfo(name = "poster_path")
     @SerializedName("poster_path")
     private String posterPath = null;
 
+    @ColumnInfo(name = "adult")
     @SerializedName("adult")
     private Boolean adult = null;
 
+    @ColumnInfo(name = "overview")
     @SerializedName("overview")
     private String overview = null;
 
+    @ColumnInfo(name = "release_date")
     @SerializedName("release_date")
     private String releaseDate = null;
 
+    @Ignore
     @SerializedName("genre_ids")
     private List<Integer> genreIds = new ArrayList<Integer>();
 
+    @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     private Integer id = null;
 
+    @ColumnInfo(name = "original_title")
     @SerializedName("original_title")
     private String originalTitle = null;
 
+    @ColumnInfo(name = "original_language")
     @SerializedName("original_language")
     private String originalLanguage = null;
 
+    @ColumnInfo(name = "title")
     @SerializedName("title")
     private String title = null;
 
+    @ColumnInfo(name = "backdrop_path")
     @SerializedName("backdrop_path")
     private String backdropPath = null;
 
+    @ColumnInfo(name = "popularity")
     @SerializedName("popularity")
     private Double popularity = null;
 
+    @ColumnInfo(name = "vote_count")
     @SerializedName("vote_count")
     private Integer voteCount = null;
 
+    @ColumnInfo(name = "video")
     @SerializedName("video")
     private Boolean video = null;
 
+    @ColumnInfo(name = "vote_average")
     @SerializedName("vote_average")
     private Double voteAverage = null;
 

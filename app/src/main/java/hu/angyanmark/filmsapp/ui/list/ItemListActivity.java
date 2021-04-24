@@ -2,12 +2,14 @@ package hu.angyanmark.filmsapp.ui.list;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.room.Room;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import hu.angyanmark.filmsapp.App;
 import hu.angyanmark.filmsapp.R;
+import hu.angyanmark.filmsapp.data.AppDatabase;
 import hu.angyanmark.filmsapp.model.PopularMovie;
 import hu.angyanmark.filmsapp.ui.about.AboutActivity;
 
@@ -29,6 +32,8 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
 
     @Inject
     ItemListPresenter itemListPresenter;
+
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,12 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
         if (findViewById(R.id.item_detail_container) != null) {
             mTwoPane = true;
         }
+
+        database = Room.databaseBuilder(
+                getApplicationContext(),
+                AppDatabase.class,
+                "movies"
+        ).build();
     }
 
     @Override
@@ -83,15 +94,49 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
         recyclerView.setAdapter(new ItemListAdapter(this, movies, mTwoPane));
     }
 
-    @Override
-    public void showMovies(List<PopularMovie> movies) {
+    private void openRecyclerView(List<PopularMovie> movies){
         View recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView, movies);
     }
 
     @Override
+    public void showMovies(List<PopularMovie> movies) {
+        openRecyclerView(movies);
+        saveMoviesToDb(movies);
+    }
+
+    @Override
     public void showNetworkError(String message) {
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "No internet connection", Toast.LENGTH_LONG).show();
+        loadMoviesFromDb();
+    }
+
+    private void saveMoviesToDb(List<PopularMovie> movies){
+        new AsyncTask<Void, Void, Boolean>() {
+
+            @Override
+            protected Boolean doInBackground(Void... voids) {
+                for (PopularMovie movie : movies) {
+                    database.movieDao().insert(movie);
+                }
+                return true;
+            }
+        }.execute();
+    }
+
+    private void loadMoviesFromDb(){
+        new AsyncTask<Void, Void, List<PopularMovie>>() {
+
+            @Override
+            protected List<PopularMovie> doInBackground(Void... voids) {
+                return database.movieDao().getAllMovies();
+            }
+
+            @Override
+            protected void onPostExecute(List<PopularMovie> movies) {
+                openRecyclerView(movies);
+            }
+        }.execute();
     }
 }
