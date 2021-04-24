@@ -9,12 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import hu.angyanmark.filmsapp.App;
 import hu.angyanmark.filmsapp.R;
@@ -22,7 +19,6 @@ import hu.angyanmark.filmsapp.model.Dummy;
 import hu.angyanmark.filmsapp.model.PopularMovie;
 import hu.angyanmark.filmsapp.ui.about.AboutActivity;
 import hu.angyanmark.filmsapp.ui.details.ItemDetailActivity;
-import hu.angyanmark.filmsapp.ui.details.ItemDetailFragment;
 
 import java.util.List;
 
@@ -59,7 +55,6 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
     protected void onStart(){
         super.onStart();
         itemListPresenter.attachScreen(this);
-
         itemListPresenter.showMovies();
     }
 
@@ -90,7 +85,7 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, Dummy.ITEMS, mTwoPane));
+        recyclerView.setAdapter(new ItemListAdapter(this, Dummy.ITEMS, mTwoPane));
     }
 
     @Override
@@ -102,77 +97,5 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
     @Override
     public void showNetworkError(String message) {
 
-    }
-
-    public static class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
-
-        private final ItemListActivity mParentActivity;
-        private final List<Dummy.DummyItem> mValues;
-        private final boolean mTwoPane;
-        private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dummy.DummyItem item = (Dummy.DummyItem) view.getTag();
-                if (mTwoPane) {
-                    Bundle arguments = new Bundle();
-                    arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
-                    ItemDetailFragment fragment = new ItemDetailFragment();
-                    fragment.setArguments(arguments);
-                    mParentActivity.getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.item_detail_container, fragment)
-                            .commit();
-                } else {
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, ItemDetailActivity.class);
-                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
-
-                    context.startActivity(intent);
-                }
-            }
-        };
-
-        SimpleItemRecyclerViewAdapter(ItemListActivity parent,
-                                      List<Dummy.DummyItem> items,
-                                      boolean twoPane) {
-            mValues = items;
-            mParentActivity = parent;
-            mTwoPane = twoPane;
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_list_content, parent, false);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
-            holder.mRatingView.setText(mValues.get(position).rating);
-
-            holder.itemView.setTag(mValues.get(position));
-            holder.itemView.setOnClickListener(mOnClickListener);
-        }
-
-        @Override
-        public int getItemCount() {
-            return mValues.size();
-        }
-
-        class ViewHolder extends RecyclerView.ViewHolder {
-            final TextView mIdView;
-            final TextView mContentView;
-            final TextView mRatingView;
-
-            ViewHolder(View view) {
-                super(view);
-                mIdView = (TextView) view.findViewById(R.id.id_text);
-                mContentView = (TextView) view.findViewById(R.id.content);
-                mRatingView = (TextView) view.findViewById(R.id.rating);
-            }
-        }
     }
 }
