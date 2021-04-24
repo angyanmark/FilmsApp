@@ -12,13 +12,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import hu.angyanmark.filmsapp.App;
 import hu.angyanmark.filmsapp.R;
 import hu.angyanmark.filmsapp.model.Dummy;
 import hu.angyanmark.filmsapp.model.PopularMovie;
 import hu.angyanmark.filmsapp.ui.about.AboutActivity;
-import hu.angyanmark.filmsapp.ui.details.ItemDetailActivity;
 
 import java.util.List;
 
@@ -45,10 +45,6 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
         if (findViewById(R.id.item_detail_container) != null) {
             mTwoPane = true;
         }
-
-        View recyclerView = findViewById(R.id.item_list);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
     }
 
     @Override
@@ -84,18 +80,19 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+    private void setupRecyclerView(@NonNull RecyclerView recyclerView, List<PopularMovie> movies) {
         recyclerView.setAdapter(new ItemListAdapter(this, Dummy.ITEMS, mTwoPane));
     }
 
     @Override
     public void showMovies(List<PopularMovie> movies) {
-        Intent intent = new Intent(ItemListActivity.this, ItemDetailActivity.class);
-        startActivity(intent);
+        View recyclerView = findViewById(R.id.item_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView, movies);
     }
 
     @Override
     public void showNetworkError(String message) {
-
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }

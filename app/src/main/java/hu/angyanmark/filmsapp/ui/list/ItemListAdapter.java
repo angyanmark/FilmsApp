@@ -17,8 +17,7 @@ import hu.angyanmark.filmsapp.model.Dummy;
 import hu.angyanmark.filmsapp.ui.details.ItemDetailActivity;
 import hu.angyanmark.filmsapp.ui.details.ItemDetailFragment;
 
-public class ItemListAdapter
-        extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
+public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     private final ItemListActivity mParentActivity;
     private final List<Dummy.DummyItem> mValues;
