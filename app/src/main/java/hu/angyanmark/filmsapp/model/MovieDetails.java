@@ -1,84 +1,116 @@
 package hu.angyanmark.filmsapp.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity(tableName = "moviedetail")
 public class MovieDetails {
 
+    @ColumnInfo(name = "adult")
     @SerializedName("adult")
     private Boolean adult = null;
 
+    @ColumnInfo(name = "backdrop_path")
     @SerializedName("backdrop_path")
     private String backdropPath = null;
 
+    @Ignore
     @SerializedName("belongs_to_collection")
     private Object belongsToCollection = null;
 
+    @ColumnInfo(name = "budget")
     @SerializedName("budget")
     private Integer budget = null;
 
+    @Ignore
     @SerializedName("genres")
     private List<Genre> genres = new ArrayList<Genre>();
 
+    @ColumnInfo(name = "homepage")
     @SerializedName("homepage")
     private String homepage = null;
 
+    @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     private Integer id = null;
 
+    @ColumnInfo(name = "imdb_id")
     @SerializedName("imdb_id")
     private String imdbId = null;
 
+    @ColumnInfo(name = "original_language")
     @SerializedName("original_language")
     private String originalLanguage = null;
 
+    @ColumnInfo(name = "original_title")
     @SerializedName("original_title")
     private String originalTitle = null;
 
+    @ColumnInfo(name = "overview")
     @SerializedName("overview")
     private String overview = null;
 
+    @ColumnInfo(name = "popularity")
     @SerializedName("popularity")
     private Double popularity = null;
 
+    @ColumnInfo(name = "poster_path")
     @SerializedName("poster_path")
     private String posterPath = null;
 
+    @Ignore
     @SerializedName("production_companies")
     private List<ProductionCompany> productionCompanies = new ArrayList<ProductionCompany>();
 
+    @Ignore
     @SerializedName("production_countries")
     private List<ProductionCountry> productionCountries = new ArrayList<ProductionCountry>();
 
+    @ColumnInfo(name = "release_date")
     @SerializedName("release_date")
     private String releaseDate = null;
 
+    @ColumnInfo(name = "revenue")
     @SerializedName("revenue")
     private Integer revenue = null;
 
+    @ColumnInfo(name = "runtime")
     @SerializedName("runtime")
     private Integer runtime = null;
 
+    @Ignore
     @SerializedName("spoken_languages")
     private List<SpokenLanguage> spokenLanguages = new ArrayList<SpokenLanguage>();
 
+    @ColumnInfo(name = "status")
     @SerializedName("status")
     private String status = null;
 
+    @ColumnInfo(name = "tagline")
     @SerializedName("tagline")
     private String tagline = null;
 
+    @ColumnInfo(name = "title")
     @SerializedName("title")
     private String title = null;
 
+    @ColumnInfo(name = "video")
     @SerializedName("video")
     private Boolean video = null;
 
+    @ColumnInfo(name = "vote_average")
     @SerializedName("vote_average")
     private Double voteAverage = null;
 
+    @ColumnInfo(name = "vote_count")
     @SerializedName("vote_count")
     private Integer voteCount = null;
 

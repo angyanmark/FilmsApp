@@ -114,9 +114,9 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
 
     private void saveMoviesToDb(List<PopularMovie> movies){
         new AsyncTask<Void, Void, Boolean>() {
-
             @Override
             protected Boolean doInBackground(Void... voids) {
+                database.movieDao().deleteAllMovies();
                 for (PopularMovie movie : movies) {
                     database.movieDao().insert(movie);
                 }
@@ -127,7 +127,6 @@ public class ItemListActivity extends AppCompatActivity implements ItemListScree
 
     private void loadMoviesFromDb(){
         new AsyncTask<Void, Void, List<PopularMovie>>() {
-
             @Override
             protected List<PopularMovie> doInBackground(Void... voids) {
                 return database.movieDao().getAllMovies();

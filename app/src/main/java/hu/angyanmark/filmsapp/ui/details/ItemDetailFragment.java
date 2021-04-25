@@ -2,11 +2,13 @@ package hu.angyanmark.filmsapp.ui.details;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.fragment.app.Fragment;
+import androidx.room.Room;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import javax.inject.Inject;
 
 import hu.angyanmark.filmsapp.App;
+import hu.angyanmark.filmsapp.data.AppDatabase;
 import hu.angyanmark.filmsapp.model.MovieDetails;
 import hu.angyanmark.filmsapp.R;
 
@@ -27,7 +30,10 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
     @Inject
     ItemDetailPresenter itemDetailPresenter;
 
+    private AppDatabase database;
+
     private MovieDetails mMovie;
+    private int movieId;
 
     public ItemDetailFragment() {
         App.injector.inject(this);
@@ -50,9 +56,15 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            String id = getArguments().getString(ARG_ITEM_ID);
-            itemDetailPresenter.getMovie(Integer.parseInt(id));
+            movieId = Integer.parseInt(getArguments().getString(ARG_ITEM_ID));
+            itemDetailPresenter.getMovie(movieId);
         }
+
+        database = Room.databaseBuilder(
+                getContext(),
+                AppDatabase.class,
+                "movies"
+        ).build();
     }
 
     @Override
@@ -64,15 +76,14 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
     @Override
     public void showMovie(MovieDetails movie) {
         mMovie = movie;
-
-        if (mMovie != null) {
-            setDetailContent(movie);
-        }
+        setDetailContent(mMovie);
+        saveMovieToDb(mMovie);
     }
 
     @Override
     public void showNetworkError(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "No internet connection", Toast.LENGTH_LONG).show();
+        loadMovieFromDb();
     }
 
     private void setDetailContent(MovieDetails movie){
@@ -87,5 +98,32 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
         ((TextView) getView().findViewById(R.id.budget)).setText("$" + movie.getBudget());
         ((TextView) getView().findViewById(R.id.details_vote_average)).setText(movie.getVoteAverage() + "/10");
         ((TextView) getView().findViewById(R.id.overview)).setText(movie.getOverview());
+    }
+
+    private void saveMovieToDb(MovieDetails movie){
+        new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... voids) {
+                database.movieDetailDao().insert(movie);
+                return true;
+            }
+        }.execute();
+    }
+
+    private void loadMovieFromDb(){
+        new AsyncTask<Void, Void, MovieDetails>() {
+            @Override
+            protected MovieDetails doInBackground(Void... voids) {
+                return database.movieDetailDao().getMovie(movieId);
+            }
+
+            @Override
+            protected void onPostExecute(MovieDetails movie) {
+                if(movie != null){
+                    mMovie = movie;
+                    setDetailContent(mMovie);
+                }
+            }
+        }.execute();
     }
 }

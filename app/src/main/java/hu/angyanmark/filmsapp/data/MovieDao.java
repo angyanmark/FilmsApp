@@ -19,7 +19,7 @@ public interface MovieDao {
     @Query("DELETE FROM popularmovie")
     void deleteAllMovies();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     long insert(PopularMovie movie);
 
     @Update
