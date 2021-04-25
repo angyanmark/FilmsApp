@@ -1,90 +1,119 @@
 package hu.angyanmark.filmsapp.model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+@Entity(tableName = "moviedetail")
 public class MovieDetails {
 
+    @ColumnInfo(name = "adult")
     @SerializedName("adult")
     private Boolean adult = null;
 
+    @ColumnInfo(name = "backdrop_path")
     @SerializedName("backdrop_path")
     private String backdropPath = null;
 
+    @Ignore
     @SerializedName("belongs_to_collection")
     private Object belongsToCollection = null;
 
+    @ColumnInfo(name = "budget")
     @SerializedName("budget")
     private Integer budget = null;
 
+    @Ignore
     @SerializedName("genres")
     private List<Genre> genres = new ArrayList<Genre>();
 
+    @ColumnInfo(name = "homepage")
     @SerializedName("homepage")
     private String homepage = null;
 
+    @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = false)
     @SerializedName("id")
     private Integer id = null;
 
+    @ColumnInfo(name = "imdb_id")
     @SerializedName("imdb_id")
     private String imdbId = null;
 
+    @ColumnInfo(name = "original_language")
     @SerializedName("original_language")
     private String originalLanguage = null;
 
+    @ColumnInfo(name = "original_title")
     @SerializedName("original_title")
     private String originalTitle = null;
 
+    @ColumnInfo(name = "overview")
     @SerializedName("overview")
     private String overview = null;
 
+    @ColumnInfo(name = "popularity")
     @SerializedName("popularity")
     private Double popularity = null;
 
+    @ColumnInfo(name = "poster_path")
     @SerializedName("poster_path")
     private String posterPath = null;
 
+    @Ignore
     @SerializedName("production_companies")
     private List<ProductionCompany> productionCompanies = new ArrayList<ProductionCompany>();
 
+    @Ignore
     @SerializedName("production_countries")
     private List<ProductionCountry> productionCountries = new ArrayList<ProductionCountry>();
 
+    @ColumnInfo(name = "release_date")
     @SerializedName("release_date")
     private String releaseDate = null;
 
+    @ColumnInfo(name = "revenue")
     @SerializedName("revenue")
     private Integer revenue = null;
 
+    @ColumnInfo(name = "runtime")
     @SerializedName("runtime")
     private Integer runtime = null;
 
+    @Ignore
     @SerializedName("spoken_languages")
     private List<SpokenLanguage> spokenLanguages = new ArrayList<SpokenLanguage>();
 
+    @ColumnInfo(name = "status")
     @SerializedName("status")
     private String status = null;
 
+    @ColumnInfo(name = "tagline")
     @SerializedName("tagline")
     private String tagline = null;
 
+    @ColumnInfo(name = "title")
     @SerializedName("title")
     private String title = null;
 
+    @ColumnInfo(name = "video")
     @SerializedName("video")
     private Boolean video = null;
 
+    @ColumnInfo(name = "vote_average")
     @SerializedName("vote_average")
     private Double voteAverage = null;
 
+    @ColumnInfo(name = "vote_count")
     @SerializedName("vote_count")
     private Integer voteCount = null;
 
-    /**
-     **/
     public Boolean getAdult() {
         return adult;
     }
@@ -92,8 +121,6 @@ public class MovieDetails {
         this.adult = adult;
     }
 
-    /**
-     **/
     public String getBackdropPath() {
         return backdropPath;
     }
@@ -101,8 +128,6 @@ public class MovieDetails {
         this.backdropPath = backdropPath;
     }
 
-    /**
-     **/
     public Object getBelongsToCollection() {
         return belongsToCollection;
     }
@@ -110,8 +135,6 @@ public class MovieDetails {
         this.belongsToCollection = belongsToCollection;
     }
 
-    /**
-     **/
     public Integer getBudget() {
         return budget;
     }
@@ -119,8 +142,6 @@ public class MovieDetails {
         this.budget = budget;
     }
 
-    /**
-     **/
     public List<Genre> getGenres() {
         return genres;
     }
@@ -128,8 +149,6 @@ public class MovieDetails {
         this.genres = genres;
     }
 
-    /**
-     **/
     public String getHomepage() {
         return homepage;
     }
@@ -137,8 +156,6 @@ public class MovieDetails {
         this.homepage = homepage;
     }
 
-    /**
-     **/
     public Integer getId() {
         return id;
     }
@@ -146,8 +163,6 @@ public class MovieDetails {
         this.id = id;
     }
 
-    /**
-     **/
     public String getImdbId() {
         return imdbId;
     }
@@ -155,8 +170,6 @@ public class MovieDetails {
         this.imdbId = imdbId;
     }
 
-    /**
-     **/
     public String getOriginalLanguage() {
         return originalLanguage;
     }
@@ -164,8 +177,6 @@ public class MovieDetails {
         this.originalLanguage = originalLanguage;
     }
 
-    /**
-     **/
     public String getOriginalTitle() {
         return originalTitle;
     }
@@ -173,8 +184,6 @@ public class MovieDetails {
         this.originalTitle = originalTitle;
     }
 
-    /**
-     **/
     public String getOverview() {
         return overview;
     }
@@ -182,8 +191,6 @@ public class MovieDetails {
         this.overview = overview;
     }
 
-    /**
-     **/
     public Double getPopularity() {
         return popularity;
     }
@@ -191,8 +198,6 @@ public class MovieDetails {
         this.popularity = popularity;
     }
 
-    /**
-     **/
     public String getPosterPath() {
         return posterPath;
     }
@@ -200,8 +205,6 @@ public class MovieDetails {
         this.posterPath = posterPath;
     }
 
-    /**
-     **/
     public List<ProductionCompany> getProductionCompanies() {
         return productionCompanies;
     }
@@ -209,8 +212,6 @@ public class MovieDetails {
         this.productionCompanies = productionCompanies;
     }
 
-    /**
-     **/
     public List<ProductionCountry> getProductionCountries() {
         return productionCountries;
     }
@@ -218,8 +219,6 @@ public class MovieDetails {
         this.productionCountries = productionCountries;
     }
 
-    /**
-     **/
     public String getReleaseDate() {
         return releaseDate;
     }
@@ -227,8 +226,6 @@ public class MovieDetails {
         this.releaseDate = releaseDate;
     }
 
-    /**
-     **/
     public Integer getRevenue() {
         return revenue;
     }
@@ -236,8 +233,6 @@ public class MovieDetails {
         this.revenue = revenue;
     }
 
-    /**
-     **/
     public Integer getRuntime() {
         return runtime;
     }
@@ -245,8 +240,6 @@ public class MovieDetails {
         this.runtime = runtime;
     }
 
-    /**
-     **/
     public List<SpokenLanguage> getSpokenLanguages() {
         return spokenLanguages;
     }
@@ -254,8 +247,6 @@ public class MovieDetails {
         this.spokenLanguages = spokenLanguages;
     }
 
-    /**
-     **/
     public String getStatus() {
         return status;
     }
@@ -263,8 +254,6 @@ public class MovieDetails {
         this.status = status;
     }
 
-    /**
-     **/
     public String getTagline() {
         return tagline;
     }
@@ -272,8 +261,6 @@ public class MovieDetails {
         this.tagline = tagline;
     }
 
-    /**
-     **/
     public String getTitle() {
         return title;
     }
@@ -281,8 +268,6 @@ public class MovieDetails {
         this.title = title;
     }
 
-    /**
-     **/
     public Boolean getVideo() {
         return video;
     }
@@ -290,8 +275,6 @@ public class MovieDetails {
         this.video = video;
     }
 
-    /**
-     **/
     public Double getVoteAverage() {
         return voteAverage;
     }
@@ -299,98 +282,10 @@ public class MovieDetails {
         this.voteAverage = voteAverage;
     }
 
-    /**
-     **/
     public Integer getVoteCount() {
         return voteCount;
     }
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        MovieDetails movieDetails = (MovieDetails) o;
-        return Objects.equals(adult, movieDetails.adult) &&
-                Objects.equals(backdropPath, movieDetails.backdropPath) &&
-                Objects.equals(belongsToCollection, movieDetails.belongsToCollection) &&
-                Objects.equals(budget, movieDetails.budget) &&
-                Objects.equals(genres, movieDetails.genres) &&
-                Objects.equals(homepage, movieDetails.homepage) &&
-                Objects.equals(id, movieDetails.id) &&
-                Objects.equals(imdbId, movieDetails.imdbId) &&
-                Objects.equals(originalLanguage, movieDetails.originalLanguage) &&
-                Objects.equals(originalTitle, movieDetails.originalTitle) &&
-                Objects.equals(overview, movieDetails.overview) &&
-                Objects.equals(popularity, movieDetails.popularity) &&
-                Objects.equals(posterPath, movieDetails.posterPath) &&
-                Objects.equals(productionCompanies, movieDetails.productionCompanies) &&
-                Objects.equals(productionCountries, movieDetails.productionCountries) &&
-                Objects.equals(releaseDate, movieDetails.releaseDate) &&
-                Objects.equals(revenue, movieDetails.revenue) &&
-                Objects.equals(runtime, movieDetails.runtime) &&
-                Objects.equals(spokenLanguages, movieDetails.spokenLanguages) &&
-                Objects.equals(status, movieDetails.status) &&
-                Objects.equals(tagline, movieDetails.tagline) &&
-                Objects.equals(title, movieDetails.title) &&
-                Objects.equals(video, movieDetails.video) &&
-                Objects.equals(voteAverage, movieDetails.voteAverage) &&
-                Objects.equals(voteCount, movieDetails.voteCount);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(adult, backdropPath, belongsToCollection, budget, genres, homepage, id, imdbId, originalLanguage, originalTitle, overview, popularity, posterPath, productionCompanies, productionCountries, releaseDate, revenue, runtime, spokenLanguages, status, tagline, title, video, voteAverage, voteCount);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class MovieDetails {\n");
-
-        sb.append("    adult: ").append(toIndentedString(adult)).append("\n");
-        sb.append("    backdropPath: ").append(toIndentedString(backdropPath)).append("\n");
-        sb.append("    belongsToCollection: ").append(toIndentedString(belongsToCollection)).append("\n");
-        sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
-        sb.append("    genres: ").append(toIndentedString(genres)).append("\n");
-        sb.append("    homepage: ").append(toIndentedString(homepage)).append("\n");
-        sb.append("    id: ").append(toIndentedString(id)).append("\n");
-        sb.append("    imdbId: ").append(toIndentedString(imdbId)).append("\n");
-        sb.append("    originalLanguage: ").append(toIndentedString(originalLanguage)).append("\n");
-        sb.append("    originalTitle: ").append(toIndentedString(originalTitle)).append("\n");
-        sb.append("    overview: ").append(toIndentedString(overview)).append("\n");
-        sb.append("    popularity: ").append(toIndentedString(popularity)).append("\n");
-        sb.append("    posterPath: ").append(toIndentedString(posterPath)).append("\n");
-        sb.append("    productionCompanies: ").append(toIndentedString(productionCompanies)).append("\n");
-        sb.append("    productionCountries: ").append(toIndentedString(productionCountries)).append("\n");
-        sb.append("    releaseDate: ").append(toIndentedString(releaseDate)).append("\n");
-        sb.append("    revenue: ").append(toIndentedString(revenue)).append("\n");
-        sb.append("    runtime: ").append(toIndentedString(runtime)).append("\n");
-        sb.append("    spokenLanguages: ").append(toIndentedString(spokenLanguages)).append("\n");
-        sb.append("    status: ").append(toIndentedString(status)).append("\n");
-        sb.append("    tagline: ").append(toIndentedString(tagline)).append("\n");
-        sb.append("    title: ").append(toIndentedString(title)).append("\n");
-        sb.append("    video: ").append(toIndentedString(video)).append("\n");
-        sb.append("    voteAverage: ").append(toIndentedString(voteAverage)).append("\n");
-        sb.append("    voteCount: ").append(toIndentedString(voteCount)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
     }
 }
