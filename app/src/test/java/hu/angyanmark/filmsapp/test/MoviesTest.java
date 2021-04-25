@@ -19,7 +19,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @RunWith(RobolectricTestRunner.class)
-public class MainTest {
+public class MoviesTest {
     @Inject
     ItemListPresenter itemListPresenter;
 
