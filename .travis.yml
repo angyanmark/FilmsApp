@@ -22,6 +22,7 @@ sudo: required
 
 before_install:
     - yes | sdkmanager "platforms;android-30"
+    - chmod +x gradlew
 
 before_script:
     - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a -s "768x1280"
@@ -29,6 +30,4 @@ before_script:
     - adb wait-for-device
     - adb shell input keyevent 82 &
     
-script:
-    - chmod +x ./gradlew
-    - ./gradlew :app:build
+script: ./gradlew :app:build
