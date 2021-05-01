@@ -11,10 +11,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import hu.angyanmark.filmsapp.DaggerTestComponent;
 import hu.angyanmark.filmsapp.model.PopularMovie;
 import hu.angyanmark.filmsapp.ui.list.ItemListPresenter;
 import hu.angyanmark.filmsapp.ui.list.ItemListScreen;
 
+import static hu.angyanmark.filmsapp.TestHelper.setTestInjector;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -27,8 +29,8 @@ public class MoviesTest {
 
     @Before
     public void setup() {
-        /*DaggerTestComponent injector = setTestInjector();
-        injector.inject(this);*/
+        DaggerTestComponent injector = setTestInjector();
+        injector.inject(this);
         itemListScreen = mock(ItemListScreen.class);
         itemListPresenter.attachScreen(itemListScreen);
     }
