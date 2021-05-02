@@ -36,7 +36,7 @@ public class ItemDetailPresenter extends Presenter<ItemDetailScreen> {
         super.detachScreen();
     }
 
-    public void getMovie(final int id) {
+    public void showMovie(final int id) {
         networkExecutor.execute(new Runnable() {
             @Override
             public void run() {

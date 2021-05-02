@@ -57,7 +57,7 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             movieId = Integer.parseInt(getArguments().getString(ARG_ITEM_ID));
-            itemDetailPresenter.getMovie(movieId);
+            itemDetailPresenter.showMovie(movieId);
         }
 
         database = Room.databaseBuilder(

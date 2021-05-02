@@ -40,7 +40,7 @@ public interface MoviesApi {
      * @return Call<MovieDetails>
      */
     @POST("movies/{movie_id}/post")
-    Call<MovieDetails> postMovie(@Path("movie_id") Integer movieId);
+    Call<MovieDetails> postMovie(@Path("movie_id") Integer movieId, @Body MovieDetails data);
 
     /**
      * @param movieId
