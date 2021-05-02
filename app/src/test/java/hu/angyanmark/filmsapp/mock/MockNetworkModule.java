@@ -16,7 +16,6 @@ public class MockNetworkModule {
     public Retrofit.Builder provideRetrofit() {
         return new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create());
-
     }
 
     @Provides
