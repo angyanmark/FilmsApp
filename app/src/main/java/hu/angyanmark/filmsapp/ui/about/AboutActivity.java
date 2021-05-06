@@ -25,7 +25,7 @@ public class AboutActivity extends AppCompatActivity {
 
         final Button button = findViewById(R.id.crash_button);
         button.setOnClickListener(v -> {
-            throw new RuntimeException("crash");
+            throw new RuntimeException("test crash 😈");
         });
 
         setTitle(getResources().getText(R.string.action_about));
