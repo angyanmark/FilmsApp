@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import androidx.fragment.app.Fragment;
 import androidx.room.Room;
@@ -35,6 +36,8 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
     private MovieDetails mMovie;
     private int movieId;
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
     public ItemDetailFragment() {
         App.injector.inject(this);
     }
@@ -58,6 +61,11 @@ public class ItemDetailFragment extends Fragment implements ItemDetailScreen {
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             movieId = Integer.parseInt(getArguments().getString(ARG_ITEM_ID));
             itemDetailPresenter.showMovie(movieId);
+
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
+            Bundle bundle = new Bundle();
+            bundle.putInt(FirebaseAnalytics.Param.ITEM_ID, movieId);
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.VIEW_ITEM, bundle);
         }
 
         database = Room.databaseBuilder(

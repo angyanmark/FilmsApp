@@ -44,6 +44,12 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="@string/app_created_by" />
+
+        <Button
+            android:id="@+id/crash_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Crash" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "335667054920",
+    "project_id": "films-app-6409b",
+    "storage_bucket": "films-app-6409b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335667054920:android:c20db5f2729aa16f568b7d",
+        "android_client_info": {
+          "package_name": "hu.angyanmark.filmsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335667054920-an64mqtutt823c9kuq9s616jh72l7uu9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaLFoRkaZCMIY7r6zfkO3gNoifQNlIzpo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335667054920-an64mqtutt823c9kuq9s616jh72l7uu9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
